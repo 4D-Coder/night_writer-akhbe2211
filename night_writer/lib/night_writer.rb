@@ -45,3 +45,5 @@ puts "Created '#{ARGV[1]}' containing #{night_write.length} characters"
 #   'y' => ("\u283D"),
 #   'z' => ("\u2835"),
 # }
+
+    
