@@ -1,3 +1,4 @@
+require './spec/spec_helper'
 require 'pry'
 
 reader_handle = File.open(ARGV[0], 'r')

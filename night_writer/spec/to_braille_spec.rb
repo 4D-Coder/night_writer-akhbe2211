@@ -1,4 +1,4 @@
-require './lib/to_braille'
+require './spec/spec_helper'
 
 RSpec.describe ToBraille do
   let(:to_braille) { ToBraille.from_txt('incoming_text') }
