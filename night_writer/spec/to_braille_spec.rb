@@ -47,7 +47,7 @@ RSpec.describe ToBraille do
           'z' => ['0.', '.0', '00'],  
         }
 
-        expect(to_braille.library).to eq(expected))
+        expect(to_braille.library).to eq(expected)
       end
     end
   end
