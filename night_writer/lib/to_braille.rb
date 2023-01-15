@@ -6,6 +6,7 @@ class ToBraille
   def initialize(incoming_text)
     @incoming_text = incoming_text
     @library = {
+      ' ' => ['..', '..', '..'],
       'a' => ['0.', '..', '..'],
       'b' => ['0.', '0.', '..'],
       'c' => ['00', '..', '..'],
@@ -31,7 +32,7 @@ class ToBraille
       'w' => ['.0', '00', '.0'],
       'x' => ['00', '..', '00'],
       'y' => ['00', '.0', '00'],
-      'z' => ['0.', '.0', '00'],
+      'z' => ['0.', '.0', '00']
     }
     @converted_text
   end
@@ -41,10 +42,24 @@ class ToBraille
   end
 
   def convert_to_braille
-    braille_char = @library[@incoming_text]
-    joined = braille_char.join("\n")
-    @converted_text = joined
+    english_letters = @incoming_text.split('')
+
+    braille_layers_arr = english_letters.map do |letter|
+      @library[letter]
+    end
+
+    stacked_braille = braille_layers_arr.transpose.map do |layer_arr|
+      layer_arr.join
+    end.join("\n")
+
+    @converted_text = stacked_braille
+
+    # Passes 1 char.:
+    # braille_char = @library[@incoming_text]
+    # joined = braille_char.join("\n")
+    # @converted_text = joined
   end
+  
 end
 
 

@@ -17,11 +17,13 @@ RSpec.describe ToBraille do
   end
   
   describe "Iteration 2" do
-    let(:to_braille) { ToBraille.from_txt('incoming_text') }
+    let(:to_braille_a) { ToBraille.from_txt('a') }
+    let(:to_braille_the) { ToBraille.from_txt('the ') }
     
     context "#library" do
       it 'has a library as an attribute' do
         expected = {
+          ' ' => ['..', '..', '..'],
           'a' => ['0.', '..', '..'],
           'b' => ['0.', '0.', '..'],
           'c' => ['00', '..', '..'],
@@ -47,18 +49,20 @@ RSpec.describe ToBraille do
           'w' => ['.0', '00', '.0'],
           'x' => ['00', '..', '00'],
           'y' => ['00', '.0', '00'],
-          'z' => ['0.', '.0', '00'],  
+          'z' => ['0.', '.0', '00']
         }
         
-        expect(to_braille.library).to eq(expected)
+        expect(to_braille_a.library).to eq(expected)
       end
     end
     
     context "#convert_to_braille" do
-      let(:to_braille) { ToBraille.from_txt('a') }
-
       it 'can convert one character' do
-        expect(to_braille.convert_to_braille).to eq('0./n../n..')
+        expect(to_braille_a.convert_to_braille).to eq("0.\n..\n..")
+      end
+      
+      it 'can convert multiple characters' do
+        expect(to_braille_the.convert_to_braille).to eq(".00.0...\n0000.0..\n0.......")
       end
     end
     
