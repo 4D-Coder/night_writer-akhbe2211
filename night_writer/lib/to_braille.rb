@@ -48,18 +48,14 @@ class ToBraille
       @library[letter]
     end
 
-    stacked_braille = braille_layers_arr.transpose.map do |layer_arr|
-      layer_arr.join
-    end.join("\n")
-
-    @converted_text = stacked_braille
-
-    # Passes 1 char.:
-    # braille_char = @library[@incoming_text]
-    # joined = braille_char.join("\n")
-    # @converted_text = joined
+    word_wrapped = braille_layers_arr.each_slice(40).map do |segment|
+      segment.transpose.map do |layer_arr|
+        layer_arr.join
+      end.join("\n")
+    end.join("\n\n")
+      
+    @converted_text = word_wrapped
   end
-  
 end
 
 

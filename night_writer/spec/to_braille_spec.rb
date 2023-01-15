@@ -65,6 +65,5 @@ RSpec.describe ToBraille do
         expect(to_braille_the.convert_to_braille).to eq(".00.0...\n0000.0..\n0.......")
       end
     end
-    
   end
 end
