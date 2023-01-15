@@ -7,15 +7,11 @@ reader_handle.close
 
 to_braille = ToBraille.from_txt(incoming_text)
 
-# writer_handle = File.open(ARGV[1], 'w')
+writer_handle = File.open(ARGV[1], 'w')
+outgoing_text = writer_handle.write(to_braille.convert_to_braille)
+writer_handle.close
 
-# require 'pry'; binding.pry
-
-# writer_handle.write(night_write)
-
-# writer_handle.close
-
-puts "Created '#{ARGV[1]}' containing #{night_write.length} characters"
+puts "Created '#{ARGV[1]}' containing #{incoming_text.length} characters"
 
 
 # @library = {

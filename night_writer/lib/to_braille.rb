@@ -1,6 +1,7 @@
 class ToBraille
   attr_reader :incoming_text, 
-              :library
+              :library,
+              :converted_text
 
   def initialize(incoming_text)
     @incoming_text = incoming_text
@@ -32,10 +33,17 @@ class ToBraille
       'y' => ['00', '.0', '00'],
       'z' => ['0.', '.0', '00'],
     }
+    @converted_text
   end
-
+  
   def self.from_txt(incoming_text)
     ToBraille.new(incoming_text)
+  end
+
+  def convert_to_braille
+    braille_char = @library[@incoming_text]
+    joined = braille_char.join("\n")
+    @converted_text = joined
   end
 end
 

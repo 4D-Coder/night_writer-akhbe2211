@@ -1,21 +1,24 @@
 require './spec/spec_helper'
 
 RSpec.describe ToBraille do
-  let(:to_braille) { ToBraille.from_txt('incoming_text') }
-
+  
   describe "Iteration 1" do
+    let(:to_braille) { ToBraille.from_txt('incoming_text') }
+    
     context "#initialize" do
       it 'exists' do
         expect(to_braille).to be_a(ToBraille)
       end
-
+      
       it 'can receive text' do
         expect(to_braille.incoming_text).to eq('incoming_text')
       end
     end
   end
-
+  
   describe "Iteration 2" do
+    let(:to_braille) { ToBraille.from_txt('incoming_text') }
+    
     context "#library" do
       it 'has a library as an attribute' do
         expected = {
@@ -46,9 +49,18 @@ RSpec.describe ToBraille do
           'y' => ['00', '.0', '00'],
           'z' => ['0.', '.0', '00'],  
         }
-
+        
         expect(to_braille.library).to eq(expected)
       end
     end
+    
+    context "#convert_to_braille" do
+      let(:to_braille) { ToBraille.from_txt('a') }
+
+      it 'can convert one character' do
+        expect(to_braille.convert_to_braille).to eq('0./n../n..')
+      end
+    end
+    
   end
 end
