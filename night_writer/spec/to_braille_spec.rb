@@ -10,7 +10,7 @@ RSpec.describe ToBraille do
         expect(to_braille).to be_a(ToBraille)
       end
       
-      it 'can receive text' do
+      it 'can receive user input as an attribute' do
         expect(to_braille.incoming_text).to eq('incoming_text')
       end
     end

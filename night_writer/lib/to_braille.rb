@@ -1,3 +1,6 @@
+require './spec/spec_helper'
+require 'pry'
+
 class ToBraille
   attr_reader :incoming_text, 
               :library,
@@ -55,7 +58,7 @@ class ToBraille
     end.join("\n\n")
       
     @converted_text = word_wrapped
-  end
+  end  
 end
 
 
