@@ -18,7 +18,8 @@ RSpec.describe BrailleWriter do
   
   describe "Iteration 2" do
     let(:braille_writer_a) { BrailleWriter.from_txt('a') }
-    let(:braille_writer_the) { BrailleWriter.from_txt('the ') }
+    let(:braille_writer_words) { BrailleWriter.from_txt('the quick') }
+    let(:braille_writer_quote) { BrailleWriter.from_txt('the quick brown fox jumps over the lazy dog') }
     
     context "#library" do
       it 'has a library as an attribute' do
@@ -55,14 +56,24 @@ RSpec.describe BrailleWriter do
         expect(braille_writer_a.library).to eq(expected)
       end
     end
-    
+
+    context "#convert_to_braille" do
+      it 'can wrap the braille characters at 40 english characters or more' do
+        double_line_break = ".00.0...000..0000...0.0.0..000..000.00...00.0000.0..0.0.0.0....00.0...0.0.0.00..\n0000.0..00..0.......0.00.000.0..0..0....00....0.0....00..000..0000.0..0....0.0..\n0.......0.00....0.....0.0..00.....0.00....000.0.0...0.00..0...0.......0...0000..\n\n000.00\n.0.000\n..0..."
+        single_line_break = ".00.0...000..0000.\n0000.0..00..0.....\n0.......0.00....0."
+
+        expect(braille_writer_words.convert_to_braille).to eq(single_line_break)
+        expect(braille_writer_quote.convert_to_braille).to eq(double_line_break)  
+      end
+    end
+
     context "#convert_to_braille" do
       it 'can convert one character' do
         expect(braille_writer_a.convert_to_braille).to eq("0.\n..\n..")
       end
       
       it 'can convert multiple characters' do
-        expect(braille_writer_the.convert_to_braille).to eq(".00.0...\n0000.0..\n0.......")
+        expect(braille_writer_words.convert_to_braille).to eq(".00.0...000..0000.\n0000.0..00..0.....\n0.......0.00....0.")
       end
     end
   end
