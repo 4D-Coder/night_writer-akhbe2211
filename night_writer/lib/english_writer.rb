@@ -51,5 +51,13 @@ class EnglishWriter
         braille_layer.scan(/../)
       end
     end
+
+    found = layers_collection.flat_map do |collection|
+      collection.transpose
+    end
+    
+    matches = found.map do |letter|
+      @library.key(letter)
+    end.join
   end
 end
