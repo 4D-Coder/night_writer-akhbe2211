@@ -62,7 +62,6 @@ RSpec.describe EnglishWriter do
     end
 
     context "#convert_to_english" do
-      # ".00.0...\n0000.0..\n0......."
       let(:english_writer_word) { EnglishWriter.from_txt(".00.0...\n0000.0..\n0.......") }
   
       it 'can convert multiple characters' do

@@ -42,4 +42,14 @@ class EnglishWriter
   def match_by_letter
     @library.key(@incoming_text)
   end
+
+  def convert_to_english
+    layers_as_elements = @incoming_text.split("\n")
+    
+    layers_collection = layers_as_elements.each_slice(3).map do |layer|
+      layer.map do |braille_layer|
+        braille_layer.scan(/../)
+      end
+    end
+  end
 end
