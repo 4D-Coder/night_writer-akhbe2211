@@ -57,7 +57,7 @@ RSpec.describe EnglishWriter do
       let(:english_writer_t) { EnglishWriter.from_txt(".0\n00\n0.") }
 
       it 'can convert one character' do
-        expect(english_writer_t.match_by_letter).to eq("t")
+        expect(english_writer_t.convert_to_english).to eq("t")
       end
     end
 
