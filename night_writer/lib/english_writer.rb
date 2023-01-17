@@ -1,3 +1,5 @@
+require './spec/spec_helper'
+
 class EnglishWriter
   attr_reader :incoming_text,
               :library
@@ -33,7 +35,6 @@ class EnglishWriter
       'y' => ['00', '.0', '00'],
       'z' => ['0.', '.0', '00']
     }
-    @converted_text
   end
 
   def self.from_txt(incoming_text)
