@@ -8,7 +8,7 @@ reader_handle.close
 english_writer = EnglishWriter.from_txt(incoming_text)
 
 writer_handle = File.open(ARGV[1], 'w')
-outgoing_text = writer_handle.write(english_writer.convert_to_braille)
+outgoing_text = writer_handle.write(english_writer.convert_to_english)
 writer_handle.close
 
 puts "Created '#{ARGV[1]}' containing #{incoming_text.length} characters"
