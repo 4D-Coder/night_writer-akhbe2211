@@ -58,11 +58,11 @@ RSpec.describe BrailleWriter do
     
     context "#convert_braille_writer" do
       it 'can convert one character' do
-        expect(braille_writer_a.convert_braille_writer).to eq("0.\n..\n..")
+        expect(braille_writer_a.convert_to_braille).to eq("0.\n..\n..")
       end
       
       it 'can convert multiple characters' do
-        expect(braille_writer_the.convert_braille_writer).to eq(".00.0...\n0000.0..\n0.......")
+        expect(braille_writer_the.convert_to_braille).to eq(".00.0...\n0000.0..\n0.......")
       end
     end
   end
