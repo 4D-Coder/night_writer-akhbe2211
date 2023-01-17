@@ -33,7 +33,7 @@ RSpec.describe BrailleWriter do
           'g' => ['00', '00', '..'],
           'h' => ['0.', '00', '..'],
           'i' => ['.0', '0.', '..'],
-          'j' => ['.0', '..', '..'],
+          'j' => ['.0', '00', '..'],
           'k' => ['0.', '..', '0.'],
           'l' => ['0.', '0.', '0.'],
           'm' => ['00', '..', '0.'],
@@ -57,7 +57,7 @@ RSpec.describe BrailleWriter do
     end
     
     context "#convert_to_braille" do
-      xit 'can convert one character' do
+      it 'can convert one character' do
         expect(braille_writer_a.convert_to_braille).to eq("0.\n..\n..")
       end
       

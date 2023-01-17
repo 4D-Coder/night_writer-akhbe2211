@@ -15,7 +15,7 @@ class EnglishWriter
       'g' => ['00', '00', '..'],
       'h' => ['0.', '00', '..'],
       'i' => ['.0', '0.', '..'],
-      'j' => ['.0', '..', '..'],
+      'j' => ['.0', '00', '..'],
       'k' => ['0.', '..', '0.'],
       'l' => ['0.', '0.', '0.'],
       'm' => ['00', '..', '0.'],
@@ -33,6 +33,7 @@ class EnglishWriter
       'y' => ['00', '.0', '00'],
       'z' => ['0.', '.0', '00']
     }
+    @converted_text
   end
 
   def self.from_txt(incoming_text)
@@ -40,19 +41,19 @@ class EnglishWriter
   end
   
   def convert_to_english
-    layers_as_elements = @incoming_text.split("\n")
-    
-    layers_collection = layers_as_elements.each_slice(3).map do |layer|
-      layer.map do |braille_layer|
-        braille_layer.scan(/../)
+    layers_as_elements = @incoming_text.split("\n").delete_if { |e| e.empty? }
+
+    braille_rows = layers_as_elements.each_slice(3).map do |layers|
+      layers.map do |string|
+        string.scan(/../)
       end
     end
 
-    found = layers_collection.flat_map do |collection|
-      collection.transpose
+    braille_letters = braille_rows.flat_map do |braille_row|
+      braille_row.transpose
     end
-    
-    matches = found.map do |letter|
+
+    translated_collection = braille_letters.map do |letter|
       @library.key(letter)
     end.join
   end
