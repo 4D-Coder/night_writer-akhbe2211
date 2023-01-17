@@ -1,4 +1,4 @@
 require 'simplecov'
 SimpleCov.start
-require './lib/to_braille'
+require './lib/braille_writer'
 require './lib/english_writer'

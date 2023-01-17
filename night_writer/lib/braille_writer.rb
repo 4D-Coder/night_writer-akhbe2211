@@ -1,7 +1,7 @@
 require './spec/spec_helper'
 require 'pry'
 
-class ToBraille
+class BrailleWriter
   attr_reader :incoming_text, 
               :library,
               :converted_text
@@ -41,7 +41,7 @@ class ToBraille
   end
   
   def self.from_txt(incoming_text)
-    ToBraille.new(incoming_text)
+    BrailleWriter.new(incoming_text)
   end
 
   def convert_to_braille

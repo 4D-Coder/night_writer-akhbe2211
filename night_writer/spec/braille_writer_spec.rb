@@ -1,24 +1,24 @@
 require './spec/spec_helper'
 
-RSpec.describe ToBraille do
+RSpec.describe BrailleWriter do
   
   describe "Iteration 1" do
-    let(:to_braille) { ToBraille.from_txt('incoming_text') }
+    let(:braille_writer) { BrailleWriter.from_txt('incoming_text') }
     
     context "#initialize" do
       it 'exists' do
-        expect(to_braille).to be_a(ToBraille)
+        expect(braille_writer).to be_a(BrailleWriter)
       end
       
-      it 'can receive user input as an attribute' do
-        expect(to_braille.incoming_text).to eq('incoming_text')
+      it 'can receive text' do
+        expect(braille_writer.incoming_text).to eq('incoming_text')
       end
     end
   end
   
   describe "Iteration 2" do
-    let(:to_braille_a) { ToBraille.from_txt('a') }
-    let(:to_braille_the) { ToBraille.from_txt('the ') }
+    let(:braille_writer_a) { BrailleWriter.from_txt('a') }
+    let(:braille_writer_the) { BrailleWriter.from_txt('the ') }
     
     context "#library" do
       it 'has a library as an attribute' do
@@ -52,17 +52,17 @@ RSpec.describe ToBraille do
           'z' => ['0.', '.0', '00']
         }
         
-        expect(to_braille_a.library).to eq(expected)
+        expect(braille_writer_a.library).to eq(expected)
       end
     end
     
-    context "#convert_to_braille" do
+    context "#convert_braille_writer" do
       it 'can convert one character' do
-        expect(to_braille_a.convert_to_braille).to eq("0.\n..\n..")
+        expect(braille_writer_a.convert_braille_writer).to eq("0.\n..\n..")
       end
       
       it 'can convert multiple characters' do
-        expect(to_braille_the.convert_to_braille).to eq(".00.0...\n0000.0..\n0.......")
+        expect(braille_writer_the.convert_braille_writer).to eq(".00.0...\n0000.0..\n0.......")
       end
     end
   end

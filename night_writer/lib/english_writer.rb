@@ -38,11 +38,6 @@ class EnglishWriter
   def self.from_txt(incoming_text)
     EnglishWriter.new(incoming_text)
   end
-
-  def match_by_letter
-    value_to_match = @incoming_text.split("\n")
-    @library.key(value_to_match)
-  end
   
   def convert_to_english
     layers_as_elements = @incoming_text.split("\n")
