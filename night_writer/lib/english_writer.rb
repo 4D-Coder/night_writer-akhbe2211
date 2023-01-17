@@ -41,7 +41,7 @@ class EnglishWriter
     EnglishWriter.new(incoming_text)
   end
   
-  def convert_to_english
+  def extract_and_sort
     layers_as_elements = @incoming_text.split("\n").delete_if { |e| e.empty? }
 
     braille_rows = layers_as_elements.each_slice(3).map do |layers|
@@ -53,8 +53,10 @@ class EnglishWriter
     braille_letters = braille_rows.flat_map do |braille_row|
       braille_row.transpose
     end
+  end
 
-    translated_collection = braille_letters.map do |letter|
+  def convert_to_english
+    convert_to_english = extract_and_sort.map do |letter|
       @library.key(letter)
     end.join
   end

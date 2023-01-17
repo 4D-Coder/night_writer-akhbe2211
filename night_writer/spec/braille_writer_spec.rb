@@ -53,12 +53,27 @@ RSpec.describe BrailleWriter do
           'z' => ['0.', '.0', '00']
         }
         
-        expect(braille_writer_a.library).to eq(expected)
+        expect(braille_writer_words.library).to eq(expected)
       end
     end
 
+    context "#braille_layers_arr" do
+      it 'receieves @incoming_text in english letters and returns it in array of braille characters' do
+        expect(braille_writer_a.braille_layers_arr).to eq([["0.", "..", ".."]])
+      end
+      
+    end
+    
     context "#convert_to_braille" do
-      it 'can wrap the braille characters at 40 english characters or more' do
+      it 'can convert one character' do
+        expect(braille_writer_a.convert_to_braille).to eq("0.\n..\n..")
+      end
+
+      it 'can convert multiple characters' do
+        expect(braille_writer_words.convert_to_braille).to eq(".00.0...000..0000.\n0000.0..00..0.....\n0.......0.00....0.")
+      end
+
+      it 'wraps the braille characters at 80 english characters or more' do
         double_line_break = ".00.0...000..0000...0.0.0..000..000.00...00.0000.0..0.0.0.0....00.0...0.0.0.00..\n0000.0..00..0.......0.00.000.0..0..0....00....0.0....00..000..0000.0..0....0.0..\n0.......0.00....0.....0.0..00.....0.00....000.0.0...0.00..0...0.......0...0000..\n\n000.00\n.0.000\n..0..."
         single_line_break = ".00.0...000..0000.\n0000.0..00..0.....\n0.......0.00....0."
 
@@ -67,14 +82,5 @@ RSpec.describe BrailleWriter do
       end
     end
 
-    context "#convert_to_braille" do
-      it 'can convert one character' do
-        expect(braille_writer_a.convert_to_braille).to eq("0.\n..\n..")
-      end
-      
-      it 'can convert multiple characters' do
-        expect(braille_writer_words.convert_to_braille).to eq(".00.0...000..0000.\n0000.0..00..0.....\n0.......0.00....0.")
-      end
-    end
   end
 end

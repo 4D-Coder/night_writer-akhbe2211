@@ -6,12 +6,13 @@ RSpec.describe EnglishWriter do
     let(:english_writer_t) { EnglishWriter.from_txt(".0\n00\n0.") }
     let(:english_writer_word) { EnglishWriter.from_txt(".00.0...\n0000.0..\n0.......") }
     let(:english_writer_words) { EnglishWriter.from_txt(".00.0...000..0000...0.0.0..000..000.00...00.0000.0..0.0.0.0....00.0...0.0.0.00..\n0000.0..00..0.......0.00.000.0..0..0....00....0.0....00..000..0000.0..0....0.0..\n0.......0.00....0.....0.0..00.....0.00....000.0.0...0.00..0...0.......0...0000..\n\n000.00\n.0.000\n..0...") }
-    let(:english_writer_alias) { EnglishWriter.from_txt("AABBCCDD\nAABBCCDD\nAABBCCDD") }
 
     context '#initialize' do
       
       it 'exists' do
         expect(english_writer_t).to be_a(EnglishWriter)  
+        expect(english_writer_word).to be_a(EnglishWriter)  
+        expect(english_writer_words).to be_a(EnglishWriter)  
       end
       
       it 'can receive user input as an attribute' do
@@ -56,10 +57,9 @@ RSpec.describe EnglishWriter do
       end
     end
 
-    context "#match_by_letter" do
-
-      it 'can convert one character' do
-        expect(english_writer_t.convert_to_english).to eq("t")
+    context "#extract_and_convert" do
+      it 'can take @incoming_text and return values to be matched to library' do
+        expect(english_writer_word.extract_and_sort).to eq([[".0", "00", "0."], ["0.", "00", ".."], ["0.", ".0", ".."], ["..", "..", ".."]])
       end
     end
 

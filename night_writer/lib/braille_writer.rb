@@ -43,20 +43,21 @@ class BrailleWriter
     BrailleWriter.new(incoming_text)
   end
 
-  def convert_to_braille
-    word_wrapper = braille_layers_arr.each_slice(40).map do |segment|
-      segment.transpose.map do |layer_arr|
-        layer_arr.join
-      end.join("\n")
-    end.join("\n\n")
-  end
-
   def braille_layers_arr
     english_letters = @incoming_text.split('')
     braille_layers_arr = english_letters.map do |letter|
       @library[letter]
     end
   end
+
+  def convert_to_braille
+    convert_to_braille = braille_layers_arr.each_slice(40).map do |segment|
+      segment.transpose.map do |layer_arr|
+        layer_arr.join
+      end.join("\n")
+    end.join("\n\n")
+  end
+
 end
 
 
