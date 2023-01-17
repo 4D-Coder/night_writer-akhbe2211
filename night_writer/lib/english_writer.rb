@@ -39,9 +39,7 @@ class EnglishWriter
     EnglishWriter.new(incoming_text)
   end
 
-  def convert_to_english
-    letter = @library.find do |eng, braille|
-      @library[eng] == @incoming_text.scan(/../)
-    end[0]
+  def match_by_letter
+    @library.key(@incoming_text)
   end
 end

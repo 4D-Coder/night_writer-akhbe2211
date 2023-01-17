@@ -4,7 +4,7 @@ RSpec.describe EnglishWriter do
 
   describe 'Iteration 3' do
     context '#initialize' do
-      let(:english_writer) { EnglishWriter.new("0.\n..\n..") }
+      let(:english_writer) { EnglishWriter.from_txt("0.\n..\n..") }
       
       it 'exists' do
         expect(english_writer).to be_a(EnglishWriter)  
@@ -16,7 +16,7 @@ RSpec.describe EnglishWriter do
     end
     
     context "#library" do
-      let(:english_writer) { EnglishWriter.new("0.\n..\n..") }
+      let(:english_writer) { EnglishWriter.from_txt("0.\n..\n..") }
 
       it 'has a library as an attribute' do
         expected = {
@@ -53,11 +53,20 @@ RSpec.describe EnglishWriter do
       end
     end
 
-    context "#convert_to_english" do
-      let(:english_writer_t) { EnglishWriter.new(".0\n00\n0.") }
+    context "#match_by_letter" do
+      let(:english_writer_t) { EnglishWriter.from_txt(".0\n00\n0.") }
 
       it 'can convert one character' do
-        expect(english_writer_t.convert_to_english).to eq("t")
+        expect(english_writer_t.match_by_letter).to eq("t")
+      end
+    end
+
+    context "#convert_to_english" do
+      # ".00.0...\n0000.0..\n0......."
+      let(:english_writer_word) { EnglishWriter.from_txt(".00.0...\n0000.0..\n0.......") }
+  
+      it 'can convert multiple characters' do
+        expect(english_writer_word.convert_to_english).to eq("the ")
       end
     end
   end
