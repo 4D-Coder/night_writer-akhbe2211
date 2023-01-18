@@ -3,11 +3,10 @@ require './spec/spec_helper'
 class BrailleWriter
 
   attr_reader :incoming_text, 
-              :library,
-              :converted_text
+              :library
 
   def initialize(incoming_text)
-    @incoming_text = incoming_text
+    @incoming_text = incoming_text.downcase
     @library = {
       ' ' => ['..', '..', '..'],
       'a' => ['0.', '..', '..'],
@@ -43,9 +42,11 @@ class BrailleWriter
     BrailleWriter.new(incoming_text)
   end
 
+  # def chara
+
   def braille_layers_arr
     english_letters = @incoming_text.split('')
-    braille_layers_arr = english_letters.map do |letter|
+    braille_layers_arr = english_letters.filter_map do |letter|
       @library[letter]
     end
   end
@@ -57,7 +58,6 @@ class BrailleWriter
       end.join("\n")
     end.join("\n\n")
   end
-
 end
 
 

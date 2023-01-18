@@ -3,7 +3,7 @@ require './spec/spec_helper'
 RSpec.describe EnglishWriter do
   
   describe 'Iteration 3' do
-    let(:english_writer_t) { EnglishWriter.from_txt(".0\n00\n0.") }
+    let(:english_writer_t) { EnglishWriter.from_txt([["0.", "..", ".."]]) }
     let(:english_writer_word) { EnglishWriter.from_txt(".00.0...\n0000.0..\n0.......") }
     let(:english_writer_words) { EnglishWriter.from_txt(".00.0...000..0000...0.0.0..000..000.00...00.0000.0..0.0.0.0....00.0...0.0.0.00..\n0000.0..00..0.......0.00.000.0..0..0....00....0.0....00..000..0000.0..0....0.0..\n0.......0.00....0.....0.0..00.....0.00....000.0.0...0.00..0...0.......0...0000..\n\n000.00\n.0.000\n..0...") }
 

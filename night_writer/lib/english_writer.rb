@@ -1,11 +1,12 @@
 require './spec/spec_helper'
 
 class EnglishWriter
+
   attr_reader :incoming_text,
               :library
 
   def initialize(incoming_text)
-    @incoming_text = incoming_text
+    @incoming_text = incoming_text.downcase
     @library = {
       ' ' => ['..', '..', '..'],
       'a' => ['0.', '..', '..'],
