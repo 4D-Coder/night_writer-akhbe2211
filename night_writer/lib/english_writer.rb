@@ -5,7 +5,7 @@ class EnglishWriter
               :library
 
   def initialize(incoming_text)
-    @incoming_text = incoming_text
+    @incoming_text = incoming_text.downcase
     @library = {
       ' ' => ['..', '..', '..'],
       'a' => ['0.', '..', '..'],

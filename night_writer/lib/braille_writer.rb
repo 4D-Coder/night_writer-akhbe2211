@@ -7,7 +7,7 @@ class BrailleWriter
               :converted_text
 
   def initialize(incoming_text)
-    @incoming_text = incoming_text
+    @incoming_text = incoming_text.downcase
     @library = {
       ' ' => ['..', '..', '..'],
       'a' => ['0.', '..', '..'],
@@ -43,6 +43,8 @@ class BrailleWriter
     BrailleWriter.new(incoming_text)
   end
 
+  def chara
+
   def braille_layers_arr
     english_letters = @incoming_text.split('')
     braille_layers_arr = english_letters.map do |letter|
@@ -57,7 +59,6 @@ class BrailleWriter
       end.join("\n")
     end.join("\n\n")
   end
-
 end
 
 
