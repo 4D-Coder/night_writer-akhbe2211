@@ -21,7 +21,8 @@ letters, a numeral or a punctuation mark.
 2. Both programs can be executed from the terminal with the following commands:
    1. `ruby ./lib/night_writer.rb message.txt braille.txt`
    2. `ruby ./lib/night_reader.rb  braille.txt original_messsage.txt`
-3. Input the desired text file for translation as the first argument, and the desired    output file for translation as the second.
+3. Input the desired text file for translation as the first argument, and the desired output file for translation as the second.
+4. Please Note: night_writer.rb will automatically omit all non alphabetical characters and capitalization. Hopefully will update in the future!
 
 ---
 
