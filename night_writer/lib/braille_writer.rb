@@ -1,4 +1,7 @@
-class ToBraille
+require './spec/spec_helper'
+
+class BrailleWriter
+
   attr_reader :incoming_text, 
               :library,
               :converted_text
@@ -16,7 +19,7 @@ class ToBraille
       'g' => ['00', '00', '..'],
       'h' => ['0.', '00', '..'],
       'i' => ['.0', '0.', '..'],
-      'j' => ['.0', '..', '..'],
+      'j' => ['.0', '00', '..'],
       'k' => ['0.', '..', '0.'],
       'l' => ['0.', '0.', '0.'],
       'm' => ['00', '..', '0.'],
@@ -34,28 +37,27 @@ class ToBraille
       'y' => ['00', '.0', '00'],
       'z' => ['0.', '.0', '00']
     }
-    @converted_text
   end
   
   def self.from_txt(incoming_text)
-    ToBraille.new(incoming_text)
+    BrailleWriter.new(incoming_text)
   end
 
-  def convert_to_braille
+  def braille_layers_arr
     english_letters = @incoming_text.split('')
-
     braille_layers_arr = english_letters.map do |letter|
       @library[letter]
     end
+  end
 
-    word_wrapped = braille_layers_arr.each_slice(40).map do |segment|
+  def convert_to_braille
+    convert_to_braille = braille_layers_arr.each_slice(40).map do |segment|
       segment.transpose.map do |layer_arr|
         layer_arr.join
       end.join("\n")
     end.join("\n\n")
-      
-    @converted_text = word_wrapped
   end
+
 end
 
 
