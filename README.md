@@ -20,7 +20,7 @@ letters, a numeral or a punctuation mark.
    2. night_reader.rb - for reading braille and translating back into english
 2. Both programs can be executed from the terminal with the following commands:
    1. `ruby ./lib/night_writer.rb message.txt braille.txt`
-   2. `ruby ./lib/night_writer.rb  braille.txt original_messsage.txt`
+   2. `ruby ./lib/night_reader.rb  braille.txt original_messsage.txt`
 3. Input the desired text file for translation as the first argument, and the desired    output file for translation as the second.
 
 ---
