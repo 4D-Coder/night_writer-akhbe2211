@@ -1,6 +1,7 @@
 require './spec/spec_helper'
 
 class EnglishWriter
+
   attr_reader :incoming_text,
               :library
 
